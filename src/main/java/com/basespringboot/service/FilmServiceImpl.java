@@ -1,11 +1,14 @@
 package com.basespringboot.service;
 
 import com.basespringboot.dto.FilmDto;
+import com.basespringboot.entity.Car;
 import com.basespringboot.entity.Film;
 import com.basespringboot.repository.FilmRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 @Transactional
@@ -21,5 +24,9 @@ public class FilmServiceImpl implements FilmService {
         film.setName(filmDto.getName());
         film.setYear(filmDto.getYear());
         return filmRepository.save(film);
+    }
+
+    public List<Film> findAll() {
+        return filmRepository.findAll();
     }
 }
