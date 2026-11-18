@@ -9,8 +9,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 
-@RestController( "/films")
-@RequestMapping()
+
+@RequestMapping( "/films")
+@RestController
 @RequiredArgsConstructor
 
 public class FilmController {
