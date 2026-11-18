@@ -19,6 +19,7 @@ public class FilmServiceImpl implements FilmService {
     public Film save(FilmDto filmDto){
         Film film = new Film();
         film.setName(filmDto.getName());
+        film.setYear(filmDto.getYear());
         return filmRepository.save(film);
     }
 }
