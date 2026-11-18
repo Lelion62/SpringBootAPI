@@ -6,6 +6,7 @@ import com.basespringboot.repository.CarRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import java.util.List;
 
 @Service
 @Transactional
@@ -22,5 +23,15 @@ public class CarServiceImpl implements CarService {
         car.setColor(carDto.getColor());
         car.setDate(carDto.getDate());
         return carRepository.save(car);
+    }
+
+    @Override
+    public List<Car> findAll() {
+        return carRepository.findAll();
+    }
+
+    public Car findById(Long id) {
+        return carRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Car not found with id: " + id));
     }
 }

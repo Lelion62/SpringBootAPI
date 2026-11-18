@@ -7,10 +7,11 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RequestMapping("/cars")
 @RestController
 @RequiredArgsConstructor
-
 public class CarController {
 
     private final CarService carService;
@@ -21,4 +22,13 @@ public class CarController {
         return carService.save(car);
     }
 
+    @GetMapping
+    public List<Car> findAll() {
+        return carService.findAll();
+    }
+
+    @GetMapping("/{id}")
+    public Car findById(@PathVariable Long id) {
+        return carService.findById(id);
+    }
 }
