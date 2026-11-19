@@ -39,4 +39,14 @@ public class CarServiceImpl implements CarService {
     public void deleteById(Long id) {
         carRepository.deleteById(id);
     }
+
+    @Override
+    public void updateById(Long id, CarDto carDto) {
+        Car car = this.findById(id);
+        car.setBrand(carDto.getBrand());
+        car.setModel(carDto.getModel());
+        car.setColor(carDto.getColor());
+        car.setDate(carDto.getDate());
+        carRepository.save(car);
+    }
 }
