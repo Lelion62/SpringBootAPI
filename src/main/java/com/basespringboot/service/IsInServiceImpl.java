@@ -13,15 +13,13 @@ import org.springframework.transaction.annotation.Transactional;
 
 
 public class IsInServiceImpl implements IsInService {
-    private final IsInRepository isinRepository;
+    private final IsInRepository isInRepository;
 
     @Override
     public IsIn save(IsInDto isInDto){
         IsIn isIn = new IsIn();
-        isIn.setCar_id(isInDto.getCarId());
-        isIn.setFilm_id(isInDto.getFilmId());
-        return isinRepository.save(isIn);
         isIn.setCarId(isInDto.getCarId());
         isIn.setFilmId(isInDto.getFilmId());
+        return isInRepository.save(isIn);
     }
 }
