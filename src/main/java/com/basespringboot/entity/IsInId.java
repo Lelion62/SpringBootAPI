@@ -10,6 +10,6 @@ import java.io.Serializable;
 @AllArgsConstructor
 @EqualsAndHashCode
 public class IsInId implements Serializable {
-    private Integer car_id;
-    private Integer film_id;
+    private Integer carId;
+    private Integer filmId;
 }
