@@ -8,4 +8,5 @@ public interface CarService {
     Car save(CarDto car);
     List<Car> findAll();
     Car findById(Long id);
+    void deleteById(Long id);
 }

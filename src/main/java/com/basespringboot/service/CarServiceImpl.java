@@ -34,4 +34,9 @@ public class CarServiceImpl implements CarService {
         return carRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Car not found with id: " + id));
     }
+
+    @Override
+    public void deleteById(Long id) {
+        carRepository.deleteById(id);
+    }
 }
