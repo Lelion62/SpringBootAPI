@@ -1,23 +1,17 @@
 package com.basespringboot.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
 @Getter
 @Setter
+@IdClass(IsInId.class)
 public class IsIn {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer car_id;
+
+    @Id
     private Integer film_id;
-
-
-
-
-
 }
