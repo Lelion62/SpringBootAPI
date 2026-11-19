@@ -2,8 +2,10 @@ package com.basespringboot;
 
 import com.basespringboot.entity.Car;
 import com.basespringboot.entity.Film;
+import com.basespringboot.entity.IsIn;
 import com.basespringboot.repository.CarRepository;
 import com.basespringboot.repository.FilmRepository;
+import com.basespringboot.repository.IsInRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -45,8 +47,8 @@ public class BaseSpringBootApplication {
             if (isInRepository.count() == 0) {
 
                 IsIn isIn = new IsIn();
-                isIn.setCar(1);
-                isIn.setFilm(1);
+                isIn.setCar_id(1);
+                isIn.setFilm_id(1);
 
                 isInRepository.save(isIn);
             }
