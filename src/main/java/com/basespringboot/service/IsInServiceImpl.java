@@ -21,5 +21,7 @@ public class IsInServiceImpl implements IsInService {
         isIn.setCar_id(isInDto.getCarId());
         isIn.setFilm_id(isInDto.getFilmId());
         return isinRepository.save(isIn);
+        isIn.setCarId(isInDto.getCarId());
+        isIn.setFilmId(isInDto.getFilmId());
     }
 }

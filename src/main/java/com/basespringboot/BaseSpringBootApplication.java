@@ -47,8 +47,8 @@ public class BaseSpringBootApplication {
             if (isInRepository.count() == 0) {
 
                 IsIn isIn = new IsIn();
-                isIn.setCar_id(1);
-                isIn.setFilm_id(1);
+                isIn.setCarId(1);
+                isIn.setFilmId(1);
 
                 isInRepository.save(isIn);
             }

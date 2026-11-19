@@ -10,8 +10,10 @@ import lombok.Setter;
 @IdClass(IsInId.class)
 public class IsIn {
     @Id
-    private Integer car_id;
+    @Column(name = "car_id")
+    private Integer carId;
 
     @Id
-    private Integer film_id;
+    @Column(name = "film_id")
+    private Integer filmId;
 }
