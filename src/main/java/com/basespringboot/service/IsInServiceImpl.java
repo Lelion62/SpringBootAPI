@@ -7,6 +7,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @Transactional
 @RequiredArgsConstructor
@@ -21,5 +23,20 @@ public class IsInServiceImpl implements IsInService {
         isIn.setCarId(isInDto.getCarId());
         isIn.setFilmId(isInDto.getFilmId());
         return isInRepository.save(isIn);
+    }
+
+    @Override
+    public List<IsIn> findAll() {
+        return isInRepository.findAll();
+    }
+
+    @Override
+    public List<IsIn> findByCarId(Integer carId) {
+        return isInRepository.findAllByCarId(carId);
+    }
+
+    @Override
+    public List<IsIn> findByFilmId(Integer filmId) {
+        return isInRepository.findAllByFilmId(filmId);
     }
 }

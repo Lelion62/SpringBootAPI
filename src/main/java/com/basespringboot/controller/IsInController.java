@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 
 
 @RequestMapping( "/isins")
@@ -24,4 +25,18 @@ public class IsInController {
         return isInService.save(isIn);
     }
 
+    @GetMapping
+    public List<IsIn> findAll() {
+        return isInService.findAll();
+    }
+
+    @GetMapping("/car/{carId}")
+    public List<IsIn> findByCarId(@PathVariable Integer carId) {
+        return isInService.findByCarId(carId);
+    }
+
+    @GetMapping("/film/{filmId}")
+    public List<IsIn> findByFilmId(@PathVariable Integer filmId) {
+        return isInService.findByFilmId(filmId);
+    }
 }
