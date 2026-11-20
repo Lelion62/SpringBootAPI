@@ -1,7 +1,7 @@
+
 package com.basespringboot.service;
 
 import com.basespringboot.dto.FilmDto;
-import com.basespringboot.entity.Car;
 import com.basespringboot.entity.Film;
 import com.basespringboot.repository.FilmRepository;
 import lombok.RequiredArgsConstructor;
@@ -13,19 +13,21 @@ import java.util.List;
 @Service
 @Transactional
 @RequiredArgsConstructor
-
-
 public class FilmServiceImpl implements FilmService {
+
     private final FilmRepository filmRepository;
 
     @Override
-    public Film save(FilmDto filmDto){
+    public Film save(FilmDto filmDto) {
         Film film = new Film();
+
         film.setName(filmDto.getName());
         film.setYear(filmDto.getYear());
+
         return filmRepository.save(film);
     }
 
+    @Override
     public List<Film> findAll() {
         return filmRepository.findAll();
     }

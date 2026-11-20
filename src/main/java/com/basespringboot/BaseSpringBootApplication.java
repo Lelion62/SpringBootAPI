@@ -1,11 +1,10 @@
+
 package com.basespringboot;
 
 import com.basespringboot.entity.Car;
 import com.basespringboot.entity.Film;
-import com.basespringboot.entity.IsIn;
 import com.basespringboot.repository.CarRepository;
 import com.basespringboot.repository.FilmRepository;
-import com.basespringboot.repository.IsInRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -21,36 +20,42 @@ public class BaseSpringBootApplication {
     }
 
     @Bean
-    CommandLineRunner init(FilmRepository filmRepository, CarRepository carRepository, IsInRepository isInRepository) {
+    CommandLineRunner init(
+            FilmRepository filmRepository,
+            CarRepository carRepository
+    ) {
         return args -> {
 
-            if (filmRepository.count() == 0) {
+            Film film;
 
-                Film film = new Film();
+            if (filmRepository.count() == 0) {
+                film = new Film();
                 film.setName("Retour vers le futur");
                 film.setYear(1985);
 
-                filmRepository.save(film);
+                film = filmRepository.save(film);
+            } else {
+                film = filmRepository.findAll().getFirst();
             }
 
-            if (carRepository.count() == 0) {
+            Car car;
 
-                Car car = new Car();
-                car.setBrand("Dolorean");
+            if (carRepository.count() == 0) {
+                car = new Car();
+                car.setBrand("DeLorean");
                 car.setModel("DMC-12");
                 car.setColor("Grise");
                 car.setDate(1981);
 
-                carRepository.save(car);
+                car = carRepository.save(car);
+            } else {
+                car = carRepository.findAll().getFirst();
             }
 
-            if (isInRepository.count() == 0) {
-
-                IsIn isIn = new IsIn();
-                isIn.setCarId(1);
-                isIn.setFilmId(1);
-
-                isInRepository.save(isIn);
+            // Création de la relation ManyToMany
+            if (!car.getFilms().contains(film)) {
+                car.getFilms().add(film);
+                carRepository.save(car);
             }
         };
     }

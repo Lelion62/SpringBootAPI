@@ -1,4 +1,6 @@
+
 package com.basespringboot.controller;
+
 import com.basespringboot.dto.CarDto;
 import com.basespringboot.entity.Car;
 import com.basespringboot.service.CarService;
@@ -18,7 +20,7 @@ public class CarController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Car save(@Valid @RequestBody CarDto car){
+    public Car save(@Valid @RequestBody CarDto car) {
         return carService.save(car);
     }
 
@@ -38,7 +40,26 @@ public class CarController {
     }
 
     @PutMapping("/{id}")
-    public void update(@PathVariable Long id, @Valid @RequestBody CarDto car){
+    public void update(
+            @PathVariable Long id,
+            @Valid @RequestBody CarDto car
+    ) {
         carService.updateById(id, car);
+    }
+
+    @PostMapping("/{carId}/films/{filmId}")
+    public Car addFilm(
+            @PathVariable Long carId,
+            @PathVariable Long filmId
+    ) {
+        return carService.addFilm(carId, filmId);
+    }
+
+    @DeleteMapping("/{carId}/films/{filmId}")
+    public Car removeFilm(
+            @PathVariable Long carId,
+            @PathVariable Long filmId
+    ) {
+        return carService.removeFilm(carId, filmId);
     }
 }
