@@ -33,6 +33,7 @@ public class AuthController {
         );
 
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+        assert userDetails != null;
         String token = jwtService.generateToken(userDetails);
 
         return ResponseEntity.ok(new AuthResponse(token));
