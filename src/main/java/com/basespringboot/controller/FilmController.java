@@ -30,6 +30,13 @@ public class FilmController {
         return filmService.findAll();
     }
 
+
+    @GetMapping("/{id}")
+    public Film findById(@PathVariable Long id) {
+        return filmService.findById(id);
+    }
+
+
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Long id) {
         filmService.deleteById(id);
