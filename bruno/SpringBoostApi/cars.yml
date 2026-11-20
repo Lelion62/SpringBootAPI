@@ -1,0 +1,25 @@
+info:
+  name: cars
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: http://localhost:8084/cars
+  body:
+    type: json
+    data: |-
+      {
+        "brand": "Dolorean",
+        "model": "DMC-12",
+        "color": "Grise",
+        "date": 1981
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false

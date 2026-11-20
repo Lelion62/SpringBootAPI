@@ -1,0 +1,16 @@
+info:
+  name: cars film
+  type: http
+  seq: 7
+
+http:
+  method: POST
+  url: http://localhost:8084/cars/1/films/1
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
