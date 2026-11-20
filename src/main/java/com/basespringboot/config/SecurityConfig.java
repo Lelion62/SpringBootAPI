@@ -2,7 +2,7 @@
 package com.basespringboot.config;
 
 import com.basespringboot.security.JwtAuthenticationFilter;
-import lombok.RequiredArgsConstructor;
+import com.basespringboot.security.JwtService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -10,6 +10,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -22,10 +23,18 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.beans.factory.annotation.Value;
 
 @Configuration
-@RequiredArgsConstructor
 public class SecurityConfig {
 
-    private final JwtAuthenticationFilter jwtAuthenticationFilter;
+    @Bean
+    public JwtAuthenticationFilter jwtAuthenticationFilter(
+            JwtService jwtService,
+            UserDetailsService userDetailsService) {
+
+        return new JwtAuthenticationFilter(
+                jwtService,
+                userDetailsService
+        );
+    }
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -49,18 +58,18 @@ public class SecurityConfig {
 
     @Bean
     public AuthenticationManager authenticationManager(
-            AuthenticationConfiguration configuration)
-            throws Exception {
+            AuthenticationConfiguration configuration) {
 
         return configuration.getAuthenticationManager();
     }
 
     @Bean
     public SecurityFilterChain securityFilterChain(
-            HttpSecurity http) throws Exception {
+            HttpSecurity http,
+            JwtAuthenticationFilter jwtAuthenticationFilter) {
 
         return http
-                .csrf(csrf -> csrf.disable())
+                .csrf(AbstractHttpConfigurer::disable)
 
                 .sessionManagement(session ->
                         session.sessionCreationPolicy(
@@ -76,8 +85,8 @@ public class SecurityConfig {
                         .anyRequest().authenticated()
                 )
 
-                .formLogin(form -> form.disable())
-                .httpBasic(basic -> basic.disable())
+                .formLogin(AbstractHttpConfigurer::disable)
+                .httpBasic(AbstractHttpConfigurer::disable)
 
                 .addFilterBefore(
                         jwtAuthenticationFilter,
