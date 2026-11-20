@@ -3,9 +3,11 @@ package com.basespringboot.service;
 import com.basespringboot.dto.CarDto;
 import com.basespringboot.entity.Car;
 import com.basespringboot.repository.CarRepository;
-import jakarta.transaction.Transactional;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import java.util.List;
 
 @Service

@@ -10,5 +10,5 @@ public class FilmDto {
 
     @NotBlank
     private String name;
-    private int year;
+    private Long year;
 }

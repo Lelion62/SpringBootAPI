@@ -1,5 +1,6 @@
 package com.basespringboot.controller;
 
+import com.basespringboot.dto.CarDto;
 import com.basespringboot.dto.FilmDto;
 import com.basespringboot.entity.Car;
 import com.basespringboot.entity.Film;
@@ -30,5 +31,16 @@ public class FilmController {
     public List<Film> findAll() {
         return filmService.findAll();
     }
+
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Long id) {
+        filmService.deleteById(id);
+    }
+
+    @PutMapping("/{id}")
+    public void update(@PathVariable Long id, @Valid @RequestBody FilmDto film){
+        filmService.updateById(id, film);
+    }
+
 
 }

@@ -14,9 +14,9 @@ import lombok.Setter;
 public class Film {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
     private String name;
 
-    private int year;
+    private Long year;
 }
