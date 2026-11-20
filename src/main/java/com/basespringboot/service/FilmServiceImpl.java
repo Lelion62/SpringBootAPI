@@ -1,6 +1,7 @@
 
 package com.basespringboot.service;
 
+
 import com.basespringboot.dto.FilmDto;
 import com.basespringboot.entity.Film;
 import com.basespringboot.repository.FilmRepository;
@@ -31,4 +32,26 @@ public class FilmServiceImpl implements FilmService {
     public List<Film> findAll() {
         return filmRepository.findAll();
     }
+
+    public Film findById(Long id) {
+        return filmRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Car not found with id: " + id));
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        filmRepository.deleteById(id);
+    }
+
+
+    @Override
+    public void updateById(Long id, FilmDto filmDto) {
+        Film film = this.findById(id);
+        film.setName(filmDto.getName());
+        film.setYear(filmDto.getYear());
+        filmRepository.save(film);
+    }
+
+
+
 }

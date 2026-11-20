@@ -11,4 +11,7 @@ public interface FilmService {
     Film save(FilmDto film);
 
     List<Film> findAll();
+    Film findById(Long id);
+    void deleteById(Long id);
+    void updateById(Long id, FilmDto film);
 }
