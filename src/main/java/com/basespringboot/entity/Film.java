@@ -26,7 +26,7 @@ public class Film {
 
     private String name;
 
-    private Long year;
+    private Integer year;
 
     @ManyToMany(mappedBy = "films")
     @JsonIgnore
