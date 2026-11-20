@@ -1,8 +1,6 @@
 package com.basespringboot.controller;
 
-import com.basespringboot.dto.CarDto;
 import com.basespringboot.dto.FilmDto;
-import com.basespringboot.entity.Car;
 import com.basespringboot.entity.Film;
 import com.basespringboot.service.FilmService;
 import jakarta.validation.Valid;

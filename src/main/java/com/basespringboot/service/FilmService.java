@@ -1,8 +1,6 @@
 package com.basespringboot.service;
 
-import com.basespringboot.dto.CarDto;
 import com.basespringboot.dto.FilmDto;
-import com.basespringboot.entity.Car;
 import com.basespringboot.entity.Film;
 
 import java.util.List;
